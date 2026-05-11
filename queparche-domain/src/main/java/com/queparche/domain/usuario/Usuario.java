@@ -3,8 +3,11 @@ package com.queparche.domain.usuario;
 import com.queparche.domain.shared.exception.DomainValidationException;
 import com.queparche.domain.usuario.vo.Contrasena;
 import com.queparche.domain.usuario.vo.Email;
+import com.queparche.domain.usuario.vo.RedSocialUrl;
 import lombok.Getter;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -20,6 +23,11 @@ public class Usuario {
     private Contrasena contrasena;
     private String nombre;
     private final TipoRol rol;
+
+    // RF03 — campos de perfil de contacto (opcionales)
+    private String telefono;
+    private String correoSecundario;
+    private Map<String, String> redesSociales = new HashMap<>();
 
     // Constructor privado: la creación pasa siempre por los métodos de fábrica
     private Usuario(UUID id, Email email, Contrasena contrasena, String nombre, TipoRol rol) {
@@ -67,5 +75,26 @@ public class Usuario {
     // RF06: permite al Emprendedor o Cliente actualizar su contraseña respetando las mismas reglas
     public void cambiarContrasena(String nuevaContrasena) {
         this.contrasena = new Contrasena(nuevaContrasena);
+    }
+
+    // RF03 & RF07: actualiza el perfil de contacto validando cada URL de red social en el dominio
+    public void actualizarPerfil(String telefono, String correoSecundario, Map<String, String> redesSociales) {
+        this.telefono = (telefono != null && !telefono.isBlank()) ? telefono.trim() : null;
+
+        if (correoSecundario != null && !correoSecundario.isBlank()) {
+            this.correoSecundario = new Email(correoSecundario).getValor();
+        } else {
+            this.correoSecundario = null;
+        }
+
+        if (redesSociales != null && !redesSociales.isEmpty()) {
+            Map<String, String> validadas = new HashMap<>();
+            redesSociales.forEach((plataforma, url) ->
+                    validadas.put(plataforma, new RedSocialUrl(url).getValor())
+            );
+            this.redesSociales = validadas;
+        } else {
+            this.redesSociales = new HashMap<>();
+        }
     }
 }
