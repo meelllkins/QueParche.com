@@ -97,4 +97,18 @@ public class Usuario {
             this.redesSociales = new HashMap<>();
         }
     }
+
+    /**
+     * Reconstituye un Usuario desde persistencia sin ejecutar validaciones de negocio.
+     * Solo debe ser invocado por adaptadores de infraestructura.
+     */
+    public static Usuario reconstituir(UUID id, Email email, Contrasena contrasena, String nombre,
+                                        TipoRol rol, String telefono, String correoSecundario,
+                                        Map<String, String> redesSociales) {
+        Usuario u = new Usuario(id, email, contrasena, nombre, rol);
+        u.telefono = telefono;
+        u.correoSecundario = correoSecundario;
+        u.redesSociales = redesSociales != null ? new HashMap<>(redesSociales) : new HashMap<>();
+        return u;
+    }
 }

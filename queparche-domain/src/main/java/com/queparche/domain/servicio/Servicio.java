@@ -55,4 +55,13 @@ public class Servicio {
         return new Servicio(UUID.randomUUID(), nombre.trim(), descripcion.trim(),
                 fechaHora, ubicacion, emprendedorId);
     }
+
+    /**
+     * Reconstituye un Servicio desde persistencia sin validar la fecha (puede ser pasada).
+     * Solo debe ser invocado por adaptadores de infraestructura.
+     */
+    public static Servicio reconstituir(UUID id, String nombre, String descripcion,
+                                         LocalDateTime fechaHora, Ubicacion ubicacion, UUID emprendedorId) {
+        return new Servicio(id, nombre, descripcion, fechaHora, ubicacion, emprendedorId);
+    }
 }
