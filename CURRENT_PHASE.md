@@ -10,7 +10,7 @@ Cada paso debe completarse y validarse antes de avanzar al siguiente. No se perm
 
 | #  | Paso                         | Estado     | Validación requerida                          |
 |----|------------------------------|------------|-----------------------------------------------|
-| 1  | Configuración MySQL          | ✅ COMPLETO | `application.yml` con `ddl-auto=none` activo  |
+| 1  | Configuración MySQL          | ✅ COMPLETO `2026-05-14` | `application.yml` con `ddl-auto=none` activo — `mvn compile` 4/4 SUCCESS — tests 35/35 PASS |
 | 2  | JPA Entities                 | ✅ COMPLETO | `mvn compile` sin errores en infrastructure   |
 | 3  | Persistence Mappers          | ✅ COMPLETO | `mvn compile` sin errores en infrastructure   |
 | 4  | Repository Adapters          | ✅ COMPLETO | `mvn compile` sin errores en infrastructure   |
