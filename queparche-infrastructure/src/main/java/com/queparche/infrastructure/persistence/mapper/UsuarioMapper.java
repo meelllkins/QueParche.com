@@ -6,7 +6,6 @@ import com.queparche.domain.usuario.vo.Contrasena;
 import com.queparche.domain.usuario.vo.Email;
 import com.queparche.infrastructure.persistence.entity.UsuarioJpaEntity;
 import com.queparche.infrastructure.persistence.entity.UsuarioRedJpaEntity;
-import com.queparche.infrastructure.web.dto.response.UsuarioResponse;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -57,12 +56,4 @@ public final class UsuarioMapper {
         );
     }
 
-    public static UsuarioResponse toResponse(Usuario usuario) {
-        return new UsuarioResponse(
-                usuario.getId(),
-                usuario.getNombre(),
-                usuario.getEmail().getValor(),
-                usuario.getRol().name()
-        );
-    }
 }

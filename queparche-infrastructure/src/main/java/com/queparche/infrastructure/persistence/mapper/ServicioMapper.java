@@ -4,7 +4,6 @@ import com.queparche.domain.servicio.Servicio;
 import com.queparche.domain.servicio.vo.Ubicacion;
 import com.queparche.infrastructure.persistence.entity.ServicioJpaEntity;
 import com.queparche.infrastructure.persistence.entity.UsuarioJpaEntity;
-import com.queparche.infrastructure.web.dto.response.ServicioResponse;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -38,16 +37,4 @@ public final class ServicioMapper {
         );
     }
 
-    public static ServicioResponse toResponse(Servicio servicio) {
-        return new ServicioResponse(
-                servicio.getId(),
-                servicio.getNombre(),
-                servicio.getDescripcion(),
-                servicio.getFechaHora(),
-                servicio.getUbicacion().getLatitud(),
-                servicio.getUbicacion().getLongitud(),
-                servicio.getUbicacion().getDireccion(),
-                servicio.getEmprendedorId()
-        );
-    }
 }
