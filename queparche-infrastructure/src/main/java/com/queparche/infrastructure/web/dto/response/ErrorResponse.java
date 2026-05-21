@@ -1,10 +1,9 @@
 package com.queparche.infrastructure.web.dto.response;
 
-import java.time.LocalDateTime;
-
-public record ErrorResponse(String codigo, String mensaje, LocalDateTime timestamp) {
-
-    public ErrorResponse(String codigo, String mensaje) {
-        this(codigo, mensaje, LocalDateTime.now());
-    }
-}
+public record ErrorResponse(
+        String timestamp,
+        int status,
+        String error,
+        String message,
+        String path
+) {}

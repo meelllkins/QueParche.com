@@ -15,7 +15,7 @@ Cada paso debe completarse y validarse antes de avanzar al siguiente. No se perm
 | 3  | Persistence Mappers          | ✅ COMPLETO `2026-05-14` | `UsuarioMapper` + `ServicioMapper` — ambas direcciones verificadas — `mvn clean compile` 4/4 SUCCESS |
 | 4  | Repository Adapters          | ✅ COMPLETO `2026-05-14` | `UsuarioRepositoryAdapter` + `ServicioRepositoryAdapter` verificados — `mvn clean test` 173/173 PASS |
 | 5  | Auditoría                    | ✅ COMPLETO `2026-05-14` | 4 operaciones cubiertas (REGISTRO_CLIENTE, REGISTRO_EMPRENDEDOR, ACTUALIZACION_PERFIL, CREAR_SERVICIO) — `mvn clean test` 173/173 PASS |
-| 6  | Exception Handler            | ✅ COMPLETO | `GlobalExceptionHandler` mapea todos los códigos de error |
+| 6  | Exception Handler            | ✅ COMPLETO `2026-05-21` | `GlobalExceptionHandler` mapea todos los códigos de error — `ErrorResponse` alineado con contrato `PROJECT_STATE.md` — `mvn clean compile` 4/4 SUCCESS |
 | 7  | Controllers & WebMappers     | ✅ COMPLETO | Endpoints responden `BaseResponse<T>`; `mvn compile` limpio |
 
 ---
