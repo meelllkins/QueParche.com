@@ -16,7 +16,7 @@ Cada paso debe completarse y validarse antes de avanzar al siguiente. No se perm
 | 4  | Repository Adapters          | ✅ COMPLETO `2026-05-14` | `UsuarioRepositoryAdapter` + `ServicioRepositoryAdapter` verificados — `mvn clean test` 173/173 PASS |
 | 5  | Auditoría                    | ✅ COMPLETO `2026-05-14` | 4 operaciones cubiertas (REGISTRO_CLIENTE, REGISTRO_EMPRENDEDOR, ACTUALIZACION_PERFIL, CREAR_SERVICIO) — `mvn clean test` 173/173 PASS |
 | 6  | Exception Handler            | ✅ COMPLETO `2026-05-21` | `GlobalExceptionHandler` mapea todos los códigos de error — `ErrorResponse` alineado con contrato `PROJECT_STATE.md` — `mvn clean compile` 4/4 SUCCESS |
-| 7  | Controllers & WebMappers     | ✅ COMPLETO | Endpoints responden `BaseResponse<T>`; `mvn compile` limpio |
+| 7  | Controllers & WebMappers     | ✅ COMPLETO `2026-05-21` | `BaseResponse<T>` creado — `UsuarioWebMapper` + `ServicioWebMapper` — 3 endpoints retornan `BaseResponse<T>` — `toResponse()` movido fuera de persistence mappers — `mvn clean package` 173/173 PASS |
 
 ---
 
@@ -35,9 +35,9 @@ Ante cualquier falla de compilación o test roto:
 
 ## Pendientes Fase II
 
-- [ ] Migrar controllers a `BaseResponse<T>` (actualmente retornan DTOs crudos)
-- [ ] Migrar `GlobalExceptionHandler` a `ErrorResponse` con campo `path`
-- [ ] Crear `WebMapper` en infrastructure para transformar `BaseResponse<T>`
+- [x] Migrar controllers a `BaseResponse<T>` — COMPLETO `2026-05-21`
+- [x] Migrar `GlobalExceptionHandler` a `ErrorResponse` con campo `path` — COMPLETO `2026-05-21`
+- [x] Crear `WebMapper` en infrastructure para transformar `BaseResponse<T>` — COMPLETO `2026-05-21`
 
 ---
 
