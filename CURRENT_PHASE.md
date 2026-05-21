@@ -41,8 +41,16 @@ Ante cualquier falla de compilación o test roto:
 
 ---
 
-## Próxima Fase
+## Fase III — Integración Frontend (en progreso)
 
-**Fase III — Testing de Integración y Validación End-to-End**
-- Tests de integración con `@SpringBootTest` y `TestContainers` (MySQL)
-- Validación de contratos HTTP con MockMvc
+### CORS — `WebMvcConfig` ✅ COMPLETO `2026-05-21`
+- `WebMvcConfig` creado en `infrastructure.config`
+- Orígenes permitidos: `http://localhost:3000` (CRA) y `http://localhost:5173` (Vite)
+- Métodos: GET, POST, PUT, DELETE, OPTIONS
+- Headers: Content-Type, Accept, Authorization
+- `mvn clean package` → BUILD SUCCESS, 173/173 PASS
+
+### Pendientes Fase III
+- [ ] Guía de integración React → fetch() con BaseResponse<T>
+- [ ] Tests de integración con `@SpringBootTest` y `TestContainers` (MySQL)
+- [ ] Validación de contratos HTTP con MockMvc
