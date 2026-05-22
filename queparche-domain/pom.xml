@@ -16,14 +16,6 @@
     <description>Núcleo de negocio puro — cero dependencias de Spring, JPA o frameworks externos</description>
 
     <dependencies>
-        <!-- Lombok: solo reducción de boilerplate. Sin Spring en el classpath de este módulo. -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <optional>true</optional>
-        </dependency>
-
         <!-- JUnit 5 para pruebas del dominio — versión gestionada por el BOM del padre -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -31,26 +23,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <!-- Declaración explícita para que annotationProcessorPaths no dependa
-                 únicamente del pluginManagement del padre (evita fallo en Windows/JDK 21+) -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <release>${java.version}</release>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

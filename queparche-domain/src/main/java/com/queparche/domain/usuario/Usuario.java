@@ -4,7 +4,6 @@ import com.queparche.domain.shared.exception.DomainValidationException;
 import com.queparche.domain.usuario.vo.Contrasena;
 import com.queparche.domain.usuario.vo.Email;
 import com.queparche.domain.usuario.vo.RedSocialUrl;
-import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +14,6 @@ import java.util.UUID;
  * Invariante: un Usuario siempre tiene email válido, contraseña de 8+ chars,
  * nombre no vacío y un rol explícito asignado en el momento de creación.
  */
-@Getter
 public class Usuario {
 
     private final UUID id;
@@ -111,4 +109,13 @@ public class Usuario {
         u.redesSociales = redesSociales != null ? new HashMap<>(redesSociales) : new HashMap<>();
         return u;
     }
+
+    public UUID getId() { return id; }
+    public Email getEmail() { return email; }
+    public Contrasena getContrasena() { return contrasena; }
+    public String getNombre() { return nombre; }
+    public TipoRol getRol() { return rol; }
+    public String getTelefono() { return telefono; }
+    public String getCorreoSecundario() { return correoSecundario; }
+    public Map<String, String> getRedesSociales() { return redesSociales; }
 }

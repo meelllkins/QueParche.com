@@ -3,7 +3,6 @@ package com.queparche.domain.servicio;
 import com.queparche.domain.servicio.exception.FechaServicioInvalidaException;
 import com.queparche.domain.servicio.vo.Ubicacion;
 import com.queparche.domain.shared.exception.DomainValidationException;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -13,7 +12,6 @@ import java.util.UUID;
  * Invariante: fechaHora siempre futura, campos obligatorios no nulos,
  * y el emprendedorId referencia a un Usuario con rol EMPRENDEDOR (validado en application).
  */
-@Getter
 public class Servicio {
 
     private final UUID id;
@@ -64,4 +62,11 @@ public class Servicio {
                                          LocalDateTime fechaHora, Ubicacion ubicacion, UUID emprendedorId) {
         return new Servicio(id, nombre, descripcion, fechaHora, ubicacion, emprendedorId);
     }
+
+    public UUID getId() { return id; }
+    public String getNombre() { return nombre; }
+    public String getDescripcion() { return descripcion; }
+    public LocalDateTime getFechaHora() { return fechaHora; }
+    public Ubicacion getUbicacion() { return ubicacion; }
+    public UUID getEmprendedorId() { return emprendedorId; }
 }
