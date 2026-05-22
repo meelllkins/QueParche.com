@@ -32,4 +32,25 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <!-- Declaración explícita para que annotationProcessorPaths no dependa
+                 únicamente del pluginManagement del padre (evita fallo en Windows/JDK 21+) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <release>${java.version}</release>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
