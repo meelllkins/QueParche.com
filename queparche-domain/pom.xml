@@ -16,14 +16,6 @@
     <description>Núcleo de negocio puro — cero dependencias de Spring, JPA o frameworks externos</description>
 
     <dependencies>
-        <!-- Lombok: solo reducción de boilerplate. Sin Spring en el classpath de este módulo. -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <optional>true</optional>
-        </dependency>
-
         <!-- JUnit 5 para pruebas del dominio — versión gestionada por el BOM del padre -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
