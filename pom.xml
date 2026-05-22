@@ -58,6 +58,10 @@
                     <version>3.13.0</version>
                     <configuration>
                         <release>${java.version}</release>
+                        <compilerArgs>
+                            <!-- Requerido por Spring Boot 3.x para resolver @PathVariable/@RequestParam por reflexión -->
+                            <arg>-parameters</arg>
+                        </compilerArgs>
                     </configuration>
                 </plugin>
                 <!-- Surefire 3.x: detección automática de JUnit 5 sin proveedor adicional -->

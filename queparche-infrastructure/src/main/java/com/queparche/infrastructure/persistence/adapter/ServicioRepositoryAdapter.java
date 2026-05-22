@@ -10,6 +10,7 @@ import com.queparche.infrastructure.persistence.repository.AuditoriaJpaRepositor
 import com.queparche.infrastructure.persistence.repository.ServicioJpaRepository;
 import com.queparche.infrastructure.persistence.repository.UsuarioJpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
+@Transactional
 public class ServicioRepositoryAdapter implements ServicioRepositoryPort {
 
     private final ServicioJpaRepository servicioJpaRepository;

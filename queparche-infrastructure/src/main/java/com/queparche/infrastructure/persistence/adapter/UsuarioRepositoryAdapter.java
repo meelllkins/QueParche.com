@@ -11,12 +11,14 @@ import com.queparche.infrastructure.persistence.repository.AuditoriaJpaRepositor
 import com.queparche.infrastructure.persistence.repository.UsuarioJpaRepository;
 import com.queparche.infrastructure.persistence.util.PasswordHasher;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
 @Repository
+@Transactional
 public class UsuarioRepositoryAdapter implements UsuarioRepositoryPort {
 
     private final UsuarioJpaRepository jpaRepository;
