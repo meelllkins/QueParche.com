@@ -12,7 +12,7 @@ queparche-domain
 
 queparche-application
     └── Depende de: queparche-domain
-    └── Sin dependencias de framework (solo Java 17 + JDK)
+    └── Sin dependencias de framework (solo Java 25 + JDK 25)
 
 queparche-infrastructure
     └── Depende de: queparche-application, queparche-domain

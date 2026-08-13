@@ -2,7 +2,7 @@
 
 ## 1. ESTADO DEL PROYECTO
 - **Arquitectura:** Hexagonal (Puertos y Adaptadores).
-- **Stack:** Java 17, Spring Boot 3.x, MySQL.
+- **Stack:** Java 25, Spring Boot 3.x, MySQL.
 - **RF Seleccionados:** 2, 3, 6, 7 y 10.
 
 ## 2. REGLAS DE ORO DE IMPLEMENTACIÓN (ESTRICTO)
