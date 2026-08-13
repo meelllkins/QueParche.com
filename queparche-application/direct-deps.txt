@@ -1,0 +1,5 @@
+The following files have been resolved:
+   com.queparche:queparche-domain:jar:1.0.0-SNAPSHOT:compile -- module queparche.domain (auto)
+   org.junit.jupiter:junit-jupiter:jar:6.0.3:test -- module org.junit.jupiter
+   org.mockito:mockito-junit-jupiter:jar:5.23.0:test -- module org.mockito.junit.jupiter
+
