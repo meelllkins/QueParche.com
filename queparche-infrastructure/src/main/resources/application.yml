@@ -1,14 +1,37 @@
 spring:
   application:
     name: queparche-core
+
+  # ── Base de datos ────────────────────────────────────────────────
+  # Por defecto: H2 en memoria. La app arranca sin instalar ni
+  # configurar nada. Los datos se pierden al parar el proceso.
+  #
+  # Para apuntar a MySQL basta con exportar las variables de entorno,
+  # sin tocar este archivo (el conector sigue en el pom):
+  #   DB_URL=jdbc:mysql://localhost:3306/queparche?useSSL=false&serverTimezone=UTC
+  #   DB_DRIVER=com.mysql.cj.jdbc.Driver
+  #   DB_DIALECT=org.hibernate.dialect.MySQLDialect
+  #   DB_USER=root  DB_PASSWORD=...  DB_DDL=none
   datasource:
-    url: ${DB_URL:jdbc:mysql://localhost:3306/queparche?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
-    username: ${DB_USER:root}
+    # DB_CLOSE_DELAY=-1 mantiene viva la BD en memoria mientras corra
+    # la JVM; sin él se vacía cuando se cierra la última conexión.
+    url: ${DB_URL:jdbc:h2:mem:queparchedb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
+    driver-class-name: ${DB_DRIVER:org.h2.Driver}
+    username: ${DB_USER:sa}
     password: ${DB_PASSWORD:}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # Consola web de H2 para inspeccionar la BD en desarrollo:
+  # http://localhost:8080/h2-console  (JDBC URL: la de arriba, user: sa)
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
   jpa:
+    database-platform: ${DB_DIALECT:org.hibernate.dialect.H2Dialect}
     hibernate:
-      ddl-auto: none
+      # update: Hibernate crea el esquema desde las @Entity al arrancar.
+      ddl-auto: ${DB_DDL:update}
     show-sql: false
     open-in-view: false
     properties:
