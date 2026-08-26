@@ -3,8 +3,10 @@ package com.queparche.domain.usuario;
 import com.queparche.domain.shared.exception.DomainValidationException;
 import com.queparche.domain.usuario.vo.Contrasena;
 import com.queparche.domain.usuario.vo.Email;
-import lombok.Getter;
+import com.queparche.domain.usuario.vo.RedSocialUrl;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -12,7 +14,6 @@ import java.util.UUID;
  * Invariante: un Usuario siempre tiene email válido, contraseña de 8+ chars,
  * nombre no vacío y un rol explícito asignado en el momento de creación.
  */
-@Getter
 public class Usuario {
 
     private final UUID id;
@@ -20,6 +21,11 @@ public class Usuario {
     private Contrasena contrasena;
     private String nombre;
     private final TipoRol rol;
+
+    // RF03 — campos de perfil de contacto (opcionales)
+    private String telefono;
+    private String correoSecundario;
+    private Map<String, String> redesSociales = new HashMap<>();
 
     // Constructor privado: la creación pasa siempre por los métodos de fábrica
     private Usuario(UUID id, Email email, Contrasena contrasena, String nombre, TipoRol rol) {
@@ -68,4 +74,48 @@ public class Usuario {
     public void cambiarContrasena(String nuevaContrasena) {
         this.contrasena = new Contrasena(nuevaContrasena);
     }
+
+    // RF03 & RF07: actualiza el perfil de contacto validando cada URL de red social en el dominio
+    public void actualizarPerfil(String telefono, String correoSecundario, Map<String, String> redesSociales) {
+        this.telefono = (telefono != null && !telefono.isBlank()) ? telefono.trim() : null;
+
+        if (correoSecundario != null && !correoSecundario.isBlank()) {
+            this.correoSecundario = new Email(correoSecundario).getValor();
+        } else {
+            this.correoSecundario = null;
+        }
+
+        if (redesSociales != null && !redesSociales.isEmpty()) {
+            Map<String, String> validadas = new HashMap<>();
+            redesSociales.forEach((plataforma, url) ->
+                    validadas.put(plataforma, new RedSocialUrl(url).getValor())
+            );
+            this.redesSociales = validadas;
+        } else {
+            this.redesSociales = new HashMap<>();
+        }
+    }
+
+    /**
+     * Reconstituye un Usuario desde persistencia sin ejecutar validaciones de negocio.
+     * Solo debe ser invocado por adaptadores de infraestructura.
+     */
+    public static Usuario reconstituir(UUID id, Email email, Contrasena contrasena, String nombre,
+                                        TipoRol rol, String telefono, String correoSecundario,
+                                        Map<String, String> redesSociales) {
+        Usuario u = new Usuario(id, email, contrasena, nombre, rol);
+        u.telefono = telefono;
+        u.correoSecundario = correoSecundario;
+        u.redesSociales = redesSociales != null ? new HashMap<>(redesSociales) : new HashMap<>();
+        return u;
+    }
+
+    public UUID getId() { return id; }
+    public Email getEmail() { return email; }
+    public Contrasena getContrasena() { return contrasena; }
+    public String getNombre() { return nombre; }
+    public TipoRol getRol() { return rol; }
+    public String getTelefono() { return telefono; }
+    public String getCorreoSecundario() { return correoSecundario; }
+    public Map<String, String> getRedesSociales() { return redesSociales; }
 }
