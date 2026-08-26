@@ -1,0 +1,220 @@
+/* ============================================================
+   QueParche — Tema "Medellín Nocturna"
+   ------------------------------------------------------------
+   CSS vanilla (sin Tailwind, sin build) listo para el frontend
+   HTML/CSS/JS del stack Java.
+
+   Rescatado de la versión React descartada. Fuente original:
+   queparche-web/dist/assets/index-CKYrkewt.css (bundle Tailwind
+   compilado; el CSS fuente ya no existía en disco).
+   Copia cruda del bundle en: referencia/bundle-tailwind-compilado.css
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* ── Tokens de marca ──────────────────────────────────────── */
+:root {
+  /* Paleta "Medellín Nocturna" — los 3 colores de identidad */
+  --violeta: #B026FF;
+  --magenta: #FF006E;
+  --cian: #00F5FF;
+
+  /* Variantes */
+  --violeta-suave: #8B5CF6;
+  --cian-oscuro: #06B6D4;
+
+  /* Superficies (tema oscuro) */
+  --fondo: #0A0A0A;
+  --carta: #161616;
+  --carta-alt: #1F1F1F;
+  --borde: rgba(255, 255, 255, 0.09);
+
+  /* Texto */
+  --texto: #F5F5F5;
+  --texto-suave: #9CA3AF;
+
+  /* Tipografía */
+  --font-titulo: 'Montserrat', sans-serif;
+  --font-cuerpo: 'Inter', sans-serif;
+  --font-acento: 'Space Grotesk', monospace;
+
+  /* Gradiente de marca */
+  --gradiente: linear-gradient(90deg, #B026FF, #FF006E, #00F5FF);
+
+  --radio: 0.75rem;
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--fondo);
+  color: var(--texto);
+  font-family: var(--font-cuerpo);
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-titulo);
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+a {
+  color: var(--cian);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--violeta);
+}
+
+/* ── Utilidades de marca ──────────────────────────────────── */
+
+/* Texto con el degradado violeta → magenta → cian */
+.texto-degradado {
+  background: var(--gradiente);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Barra de acento (pie de página, separadores) */
+.barra-degradado {
+  background: var(--gradiente);
+  height: 4px;
+}
+
+.texto-acento {
+  font-family: var(--font-acento);
+  font-weight: 600;
+}
+
+/* ── Componentes base ─────────────────────────────────────── */
+.carta {
+  background: var(--carta);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1.5rem;
+}
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--violeta);
+  color: #fff;
+  font-family: var(--font-cuerpo);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.boton:hover {
+  background: var(--violeta-suave);
+}
+
+.boton--cian {
+  background: var(--cian);
+  color: var(--fondo);
+}
+
+.boton--cian:hover {
+  background: var(--cian-oscuro);
+}
+
+.boton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.campo {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  background: var(--carta-alt);
+  border: 1px solid var(--borde);
+  border-radius: 0.5rem;
+  color: var(--texto);
+  font-family: var(--font-cuerpo);
+  font-size: 0.95rem;
+}
+
+.campo::placeholder {
+  color: var(--texto-suave);
+}
+
+.campo:focus {
+  outline: none;
+  border-color: transparent;
+  box-shadow: 0 0 0 2px var(--cian);
+}
+
+.etiqueta {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--texto);
+}
+
+/* Insignias de estado */
+.insignia {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.insignia--violeta { background: rgba(176, 38, 255, 0.15); color: var(--violeta); }
+.insignia--magenta { background: rgba(255, 0, 110, 0.15); color: var(--magenta); }
+.insignia--cian    { background: rgba(0, 245, 255, 0.10); color: var(--cian); }
+
+/* Mensajes */
+.alerta-error {
+  padding: 1rem;
+  border: 1px solid rgba(255, 0, 110, 0.3);
+  border-radius: 0.75rem;
+  background: rgba(255, 0, 110, 0.1);
+  color: var(--magenta);
+  font-size: 0.9rem;
+}
+
+.alerta-exito {
+  padding: 1rem;
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  border-radius: 0.75rem;
+  background: rgba(0, 245, 255, 0.1);
+  color: var(--cian);
+  font-size: 0.9rem;
+}
+
+/* ── Layout ───────────────────────────────────────────────── */
+.contenedor {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.rejilla {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+/* ── Scrollbar oscura ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--fondo); }
+::-webkit-scrollbar-thumb { background: #2D2D2D; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #3D3D3D; }
