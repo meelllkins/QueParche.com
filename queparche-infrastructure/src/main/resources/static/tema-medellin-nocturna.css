@@ -213,6 +213,213 @@ a:hover {
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
 
+.seccion {
+  padding: 3rem 0;
+}
+
+.seccion__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Barra de navegación ──────────────────────────────────── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--borde);
+}
+
+.navbar__interior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.navbar__marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--texto);
+  font-family: var(--font-titulo);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.navbar__marca:hover {
+  color: var(--texto);
+  opacity: 0.85;
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 0 3rem;
+  text-align: center;
+}
+
+/* Resplandor de marca detrás del título */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -45%;
+  left: 50%;
+  width: min(680px, 90vw);
+  height: 480px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(176, 38, 255, 0.18) 0%,
+    rgba(255, 0, 110, 0.08) 45%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.hero > * {
+  position: relative;
+}
+
+.hero__titulo {
+  margin: 1rem 0 0.75rem;
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.hero__bajada {
+  max-width: 34rem;
+  margin: 0 auto;
+  color: var(--texto-suave);
+  font-size: 1.05rem;
+}
+
+.hero__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1.75rem;
+}
+
+/* ── Tarjeta de emprendimiento ────────────────────────────── */
+.carta--interactiva {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.18s, border-color 0.18s;
+}
+
+.carta--interactiva:hover {
+  transform: translateY(-3px);
+  border-color: rgba(176, 38, 255, 0.55);
+}
+
+.parche__titulo {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.parche__descripcion {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+.parche__pie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--borde);
+  color: var(--texto-suave);
+  font-size: 0.8rem;
+}
+
+.parche__autor {
+  color: var(--texto);
+  font-weight: 600;
+}
+
+/* ── Modal ────────────────────────────────────────────────── */
+.modal[hidden] {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.modal__fondo {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(3px);
+}
+
+.modal__panel {
+  position: relative;
+  width: 100%;
+  max-width: 25rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
+  animation: modal-entrada 0.18s ease-out;
+}
+
+@keyframes modal-entrada {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+
+.modal__cerrar {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--texto-suave);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal__cerrar:hover {
+  background: var(--carta-alt);
+  color: var(--texto);
+}
+
+.campo + .etiqueta {
+  margin-top: 1rem;
+}
+
+/* Respeta la preferencia de menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .carta--interactiva,
+  .modal__panel {
+    transition: none;
+    animation: none;
+  }
+}
+
 /* ── Scrollbar oscura ─────────────────────────────────────── */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--fondo); }
