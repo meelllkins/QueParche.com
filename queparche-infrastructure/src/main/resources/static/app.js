@@ -90,10 +90,18 @@
   // Rota los tres colores de la paleta "Medellín Nocturna"
   var COLORES_INSIGNIA = ['insignia--violeta', 'insignia--magenta', 'insignia--cian'];
 
-  /** Campos según ServicioResponse.java (id, nombre, descripcion,
-   *  fechaHora, latitud, longitud, direccion, emprendedorId). */
+  /** Campos según ServicioListadoResponse.java (id, nombre, descripcion,
+   *  fechaHora, latitud, longitud, direccion, emprendedorId,
+   *  emprendedorNombre). */
   function plantillaParche(parche, indice) {
     var colorInsignia = COLORES_INSIGNIA[indice % COLORES_INSIGNIA.length];
+
+    // El autor solo se muestra si el backend lo envía; nunca se cae al UUID.
+    var autor = parche.emprendedorNombre
+      ? '    <span>Por: <span class="parche__autor">' +
+        escaparHtml(parche.emprendedorNombre) +
+        '</span></span>'
+      : '';
 
     return [
       '<article class="carta carta--interactiva">',
@@ -106,6 +114,7 @@
       '  <p class="parche__descripcion">' + escaparHtml(parche.descripcion) + '</p>',
       '  <div class="parche__pie">',
       '    <span>📍 ' + escaparHtml(parche.direccion) + '</span>',
+      autor,
       '  </div>',
       '</article>'
     ].join('\n');
