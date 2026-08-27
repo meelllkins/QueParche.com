@@ -1,7 +1,9 @@
 package com.queparche.infrastructure.config;
 
 import com.queparche.application.servicio.CrearServicioService;
+import com.queparche.application.servicio.ListarServiciosService;
 import com.queparche.application.servicio.port.in.CrearServicioUseCase;
+import com.queparche.application.servicio.port.in.ListarServiciosUseCase;
 import com.queparche.application.usuario.ActualizarPerfilService;
 import com.queparche.application.usuario.RegistrarUsuarioService;
 import com.queparche.application.usuario.port.in.ActualizarPerfilUseCase;
@@ -28,5 +30,11 @@ public class BeanConfiguration {
     public CrearServicioUseCase crearServicioUseCase(UsuarioRepositoryPort usuarioRepositoryPort,
                                                       ServicioRepositoryPort servicioRepositoryPort) {
         return new CrearServicioService(usuarioRepositoryPort, servicioRepositoryPort);
+    }
+
+    @Bean
+    public ListarServiciosUseCase listarServiciosUseCase(ServicioRepositoryPort servicioRepositoryPort,
+                                                          UsuarioRepositoryPort usuarioRepositoryPort) {
+        return new ListarServiciosService(servicioRepositoryPort, usuarioRepositoryPort);
     }
 }

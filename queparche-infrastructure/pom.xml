@@ -41,16 +41,19 @@
         </dependency>
 
         <!-- Base de datos -->
-        <!-- H2 en memoria: perfil de desarrollo, arranca sin instalar nada -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <!-- MySQL: se conserva para el despliegue real (ver application.yml) -->
+        <!-- MySQL: motor en uso, configurado en application.yml -->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- H2: ya NO se usa al arrancar (application.yml apunta a MySQL).
+             Se conserva porque no entra en conflicto — ambos son drivers
+             runtime y Spring elige por driver-class-name — y habilita
+             tests de integración en memoria. Se puede borrar sin más. -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
 

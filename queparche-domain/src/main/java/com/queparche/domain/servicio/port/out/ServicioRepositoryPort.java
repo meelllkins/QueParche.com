@@ -17,4 +17,7 @@ public interface ServicioRepositoryPort {
     Optional<Servicio> buscarPorId(UUID id);
 
     List<Servicio> buscarPorEmprendedorId(UUID emprendedorId);
+
+    /** Todos los servicios publicados. Alimenta el listado público (RF10 — lectura). */
+    List<Servicio> buscarTodos();
 }

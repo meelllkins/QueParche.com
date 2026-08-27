@@ -64,6 +64,17 @@ public class ServicioRepositoryAdapter implements ServicioRepositoryPort {
                 .toList();
     }
 
+    @Override
+    public List<Servicio> buscarTodos() {
+        // El mapeo ocurre dentro de la transacción de clase: ServicioMapper
+        // navega a emprendedor.getUuid(), que es LAZY, y fuera de sesión
+        // lanzaría LazyInitializationException (open-in-view está en false).
+        return servicioJpaRepository.findAll()
+                .stream()
+                .map(ServicioMapper::toDomain)
+                .toList();
+    }
+
     private void registrarAuditoria(Servicio servicio) {
         AuditoriaJpaEntity auditoria = new AuditoriaJpaEntity();
         auditoria.setUsuarioUuid(servicio.getEmprendedorId().toString());
